@@ -10,3 +10,11 @@ SELECT *
 FROM employee
 JOIN role ON employee.role_id = role.id;
 
+INSERT INTO department
+
+INSERT INTO role
+
+INSERT INTO employee
+
+UPDATE employee
+SET role_id = 
