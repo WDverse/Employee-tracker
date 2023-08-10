@@ -6,7 +6,11 @@ const { default: Choices } = require('inquirer/lib/objects/choices.js');
 inquirer.prompt(mainMenu)
     .then(res => {
         console.log(res);
+        console.log(res.task, 'res.task')
+
+        switch (res.task) {
+            case 'View all departments':
+                // console.log(SELECT * FROM department);
+        }
     })
-    // if (choices  === "View all departments"){
-    //     inquirer.prompt(departmentQuestions);
-    // }
+

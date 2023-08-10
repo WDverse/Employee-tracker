@@ -12,7 +12,6 @@ const departmentQuestions = [
         type: 'input',
         name: 'department',
         message: 'What is the name of the department?',
-        when: (answers)=> answers.task === 'View all departments'
     },
 ]
 
