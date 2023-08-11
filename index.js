@@ -17,6 +17,10 @@ inquirer.prompt(mainMenu)
             case 'View all roles':
                 displayRoles();
             break;  
+
+            case 'View all employees':
+                displayEmployees();
+            break;  
         }
     })
 
@@ -48,6 +52,21 @@ function displayRoles(){
                 console.table(roles);
     
     //display roles 
+            })
+            .then(() => mainMenu)
+            .catch(err => console.log(err));
+}
+function displayEmployees(){
+    db.findAllEmployees()
+
+    //query all employees out of database
+            .then(([answer]) => {
+    //then do something with the answer and resolve the promise 
+                let employees = answer;
+                console.log('\n');
+                console.table(employees);
+    
+    //display employees 
             })
             .then(() => mainMenu)
             .catch(err => console.log(err));
