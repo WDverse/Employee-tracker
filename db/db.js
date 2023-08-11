@@ -7,16 +7,16 @@ class Db {
         this.connection = connection;
     }
     findAllDepartments() {
-        connection.query("SELECT * FROM department", function (err, result, fields) {
-            if (err) throw err;
-            console.log('result:', result);
-        });
+        return this.connection.promise().query(
+            'SELECT * FROM department'
+        );
 
     }
 
     findAllRoles() {
-
-    }
+        return this.connection.promise().query(
+        'SELECT * FROM role; JOIN department ON role.department_id = department.id')
+    };
 
     findAllEmployees() {
 
