@@ -7,6 +7,10 @@ class Db {
         this.connection = connection;
     }
     findAllDepartments() {
+        connection.query("SELECT * FROM department", function (err, result, fields) {
+            if (err) throw err;
+            console.log('result:', result);
+        });
 
     }
 
@@ -34,3 +38,8 @@ class Db {
 
     }
 }
+
+
+// module.exports = {
+//     findAllDepartments
+// };
