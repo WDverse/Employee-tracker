@@ -40,6 +40,4 @@ class Db {
 }
 
 
-// module.exports = {
-//     findAllDepartments
-// };
+module.exports = new Db(connection);
