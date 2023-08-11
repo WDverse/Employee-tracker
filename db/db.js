@@ -15,7 +15,7 @@ class Db {
 
     findAllRoles() {
         return this.connection.promise().query(
-        'SELECT * FROM role; JOIN department ON role.department_id = department.id')
+        'SELECT * FROM role JOIN department ON role.department_id = department.id')
     };
 
     findAllEmployees() {
