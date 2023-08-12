@@ -34,12 +34,11 @@ class Db {
         return this.connection.promise().query(
             `SELECT  
             employee.id, 
-            employee.first_name, 
-            employee.last_name, 
+            CONCAT (employee.first_name, " ", employee.last_name) as employee,
             role.title AS role,
             department.name AS department,
             role.salary,
-            CONCAT (employee.first_name, ' ', employee.last_name) as manager
+            CONCAT (employee.first_name, " ", employee.last_name) as manager
             FROM employee 
             
             LEFT JOIN 
