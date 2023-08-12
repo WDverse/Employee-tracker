@@ -32,26 +32,27 @@ class Db {
     findAllEmployees() {
 
         return this.connection.promise().query(
-            `SELECT  
+            `SELECT 
             employee.id, 
-            CONCAT (employee.first_name, " ", employee.last_name) as employee,
-            role.title AS role,
-            department.name AS department,
-            role.salary,
-            CONCAT (employee.first_name, " ", employee.last_name) as manager
+            employee.first_name, 
+            employee.last_name, 
+            role.title AS role, 
+            department.name AS department, 
+            role.salary, 
+            CONCAT(manager.first_name, ' ', manager.last_name) AS manager 
             FROM employee 
-            
+
             LEFT JOIN 
             role 
             ON employee.role_id = role.id 
 
             LEFT JOIN 
-            department
-            ON role.department_id = department.id
-
+            department 
+            ON role.department_id = department.id 
+            
             LEFT JOIN 
             employee manager 
-            ON employee.manager_id = employee.manager_id`
+            ON manager.id = employee.manager_id;`
 
         );
     };
