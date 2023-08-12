@@ -48,11 +48,11 @@ class Db {
 
             LEFT JOIN 
             department
-            ON role.department = department.id
+            ON role.department_id = department.id
 
             LEFT JOIN 
-            employee 
-            ON employee.manager_id = manager`
+            employee manager 
+            ON employee.manager_id = employee.manager_id`
 
         );
     };
