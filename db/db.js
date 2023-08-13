@@ -70,9 +70,9 @@ class Db {
         return this.connection.promise().query(
             `INSERT INTO role (title, salary, department_id)
             VALUES 
-            ("${"answer.role"},
+            ("${answer.role}",
             ${answer.salary}, 
-            ${answer.newRoleDepartment} ")`
+            ${answer.newRoleDepartment})`
         );
     };
 

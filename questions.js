@@ -34,7 +34,19 @@ const roleQuestions = [
         type: 'list',
         name: 'newRoleDepartment',
         message: 'Which department does the role belong to?',
-        choices: [db.findAllDepartments]
+        choices: async () => {
+            const [result] = await db.findAllDepartments();
+            console.log(result);
+            const selection = result.map(item => {
+                return{
+                    value: item.id, 
+                    name: item.name
+                }
+
+            })
+            console.log(selection);
+            return selection;
+        }
     },
 ];
 
