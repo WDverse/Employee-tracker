@@ -1,11 +1,12 @@
 const db = require('./db/db');
+const inquirer = require('inquirer');
 
 const mainMenu = [
     {
         type: 'list',
         name: 'task',
         message: 'What would you like to do?',
-        choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role', 'Quit']
+        choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role', new inquirer.Separator(), 'Quit']
     },
 ];
 
@@ -36,15 +37,13 @@ const roleQuestions = [
         message: 'Which department does the role belong to?',
         choices: async () => {
             const [result] = await db.findAllDepartments();
-            console.log(result);
             const selection = result.map(item => {
-                return{
-                    value: item.id, 
+                return {
+                    value: item.id,
                     name: item.name
                 };
 
             });
-            console.log(selection);
             return selection;
         },
     },
@@ -69,14 +68,12 @@ const employeeQuestions = [
         message: "What is the employee's role?",
         choices: async () => {
             const [result] = await db.findAllRoles();
-            console.log(result);
             const selection = result.map(item => {
-                return{
-                    value: item.id, 
+                return {
+                    value: item.id,
                     name: item.title
                 };
             });
-            console.log(selection);
             return selection;
         },
     },
@@ -87,17 +84,15 @@ const employeeQuestions = [
         message: "Who's the employee's manager?",
         choices: async () => {
             const [result] = await db.findAllEmployees();
-            console.log(result);
             const filter = result.filter(item => {
                 return item.manager == null;
             });
             const selection = filter.map(item => {
-                return{
-                    value: item.id, 
+                return {
+                    value: item.id,
                     name: item.first_name + " " + item.last_name
                 };
             });
-            console.log(selection);
             return selection;
         },
     },
@@ -110,14 +105,12 @@ const updateRoleQuestions = [
         message: "Which employee's role do you want to update?",
         choices: async () => {
             const [result] = await db.findAllEmployees();
-            console.log(result);
             const selection = result.map(item => {
-                return{
-                    value: item.id, 
+                return {
+                    value: item.id,
                     name: item.first_name + " " + item.last_name
                 };
             });
-            console.log(selection);
             return selection;
         },
     },
@@ -128,14 +121,12 @@ const updateRoleQuestions = [
         message: "Which role do you want to assign the selected employee?",
         choices: async () => {
             const [result] = await db.findAllRoles();
-            console.log(result);
             const selection = result.map(item => {
-                return{
-                    value: item.id, 
+                return {
+                    value: item.id,
                     name: item.title
                 };
             });
-            console.log(selection);
             return selection;
         },
     },

@@ -12,9 +12,6 @@ console.log(message);
 
 inquirer.prompt(mainMenu)
     .then(res => {
-        console.log(res);
-        console.log('res.task: ', res.task,)
-
         switch (res.task) {
             case 'View all departments':
                 displayDepartments();
