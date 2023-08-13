@@ -66,7 +66,6 @@ class Db {
     };
 
     addRole(answer) {
-        console.log(answer.newRoleDepartment);
         return this.connection.promise().query(
             `INSERT INTO role (title, salary, department_id)
             VALUES 
@@ -76,11 +75,18 @@ class Db {
         );
     };
 
-    addEmployee() {
-
+    addEmployee(answer) {
+        return this.connection.promise().query(
+            `INSERT INTO employee (first_name, last_name,role_id, manager_id)
+            VALUES 
+            ("${answer.firstname}",
+            ${answer.lastname}, 
+            ${answer.employeeRole}),
+            ${answer.manager}`
+        );
     };
 
-    updateEmployeeRole() {
+    updateEmployeeRole(answer) {
 
     };
 };

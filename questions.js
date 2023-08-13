@@ -65,16 +65,40 @@ const employeeQuestions = [
 
     {
         type: 'list',
-        name: 'employee-role',
+        name: 'employeeRole',
         message: "What is the employee's role?",
-        choices: ['Account Manager', 'Legal Lead', 'Sales Lead', 'Lawyer', 'Software Engineer', 'Legal Team Lead', 'Sales Person', 'Accountant',]
+        choices: async () => {
+            const [result] = await db.findAllRoles();
+            console.log(result);
+            const selection = result.map(item => {
+                return{
+                    value: item.id, 
+                    name: item.name
+                }
+
+            })
+            console.log(selection);
+            return selection;
+        }
     },
 
     {
         type: 'list',
         name: 'manager',
         message: "Who's the employee's manager?",
-        choices: ['John Doe', 'Philip Gbeho', 'Tom Allen', 'Walter Whyte']
+        choices: async () => {
+            const [result] = await db.findAllEmployees();
+            console.log(result);
+            const selection = result.map(item => {
+                return{
+                    value: item.id, 
+                    name: item.name
+                }
+
+            })
+            console.log(selection);
+            return selection;
+        }
     },
 ];
 

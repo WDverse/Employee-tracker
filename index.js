@@ -35,6 +35,10 @@ inquirer.prompt(mainMenu)
             case 'Add a role':
                 newRole();
                 break;
+
+            case 'Add an employee':
+                newEmployee();
+                break;
         };
     });
 
@@ -111,6 +115,20 @@ function newRole() {
             let addRole = answer;
             console.log('\n');
             console.table(addRole);
+        })
+        .then(() => mainMenu)
+        .catch(err => console.log(err));
+};
+
+function newEmployee() {
+    inquirer.
+        prompt(employeeQuestions)
+
+        .then((answer) => {
+            db.addEmployee(answer)
+            let addEmployee = answer;
+            console.log('\n');
+            console.table(addEmployee);
         })
         .then(() => mainMenu)
         .catch(err => console.log(err));
