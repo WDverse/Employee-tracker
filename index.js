@@ -40,8 +40,13 @@ inquirer.prompt(mainMenu)
             case 'Update an employee role':
                 updateRole();
                 break;
+            case 'Quit':
+                end();
+                return;
         };
+
     });
+
 
 function displayDepartments() {
     db.findAllDepartments()
@@ -149,3 +154,7 @@ function updateRole() {
         .then(() => mainMenu)
         .catch(err => console.log(err));
 };
+
+function end() {
+    end();
+}
