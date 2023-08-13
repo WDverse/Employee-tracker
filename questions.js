@@ -1,3 +1,5 @@
+const db = require('./db/db');
+
 const mainMenu = [
     {
         type: 'list',
@@ -32,7 +34,7 @@ const roleQuestions = [
         type: 'list',
         name: 'newRoleDepartment',
         message: 'Which department does the role belong to?',
-        choices: ['Finance', 'Legal', 'Sales', 'Engineering']
+        choices: [db.findAllDepartments]
     },
 ];
 

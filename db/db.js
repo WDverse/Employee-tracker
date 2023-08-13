@@ -66,10 +66,11 @@ class Db {
     };
 
     addRole(answer) {
+        console.log(answer.newRoleDepartment);
         return this.connection.promise().query(
             `INSERT INTO role (title, salary, department_id)
             VALUES 
-            ("${answer.role},
+            ("${"answer.role"},
             ${answer.salary}, 
             ${answer.newRoleDepartment} ")`
         );

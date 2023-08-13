@@ -106,7 +106,7 @@ function newRole() {
     inquirer.
         prompt(roleQuestions)
 
-        .then(([answer]) => {
+        .then((answer) => {
             db.addRole(answer)
             let addRole = answer;
             console.log('\n');
