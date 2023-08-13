@@ -5,7 +5,7 @@ const mainMenu = [
         message: 'What would you like to do?',
         choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role']
     },
-]
+];
 
 const departmentQuestions = [
     {
@@ -13,7 +13,7 @@ const departmentQuestions = [
         name: 'department',
         message: 'What is the name of the department you want to add?'
     },
-]
+];
 
 const roleQuestions = [
     {
@@ -30,11 +30,11 @@ const roleQuestions = [
 
     {
         type: 'list',
-        name: 'new-role',
+        name: 'newRoleDepartment',
         message: 'Which department does the role belong to?',
         choices: ['Finance', 'Legal', 'Sales', 'Engineering']
     },
-]
+];
 
 const employeeQuestions = [
     {
@@ -62,7 +62,7 @@ const employeeQuestions = [
         message: "Who's the employee's manager?",
         choices: ['John Doe', 'Philip Gbeho', 'Tom Allen', 'Walter Whyte']
     },
-]
+];
 
 const updateRoleQuestions = [
     {
@@ -78,6 +78,6 @@ const updateRoleQuestions = [
         message: "Which role do you want to assign the selected employee?",
         choices: ['Account Manager', 'Lead', 'Sales Lead', 'Lawyer', 'Software Engineer', 'Legal Team Lead', 'Sales Person', 'Accountant',]
     },
-]
+];
 
 module.exports = { mainMenu, departmentQuestions, roleQuestions, employeeQuestions, updateRoleQuestions };

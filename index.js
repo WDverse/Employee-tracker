@@ -6,7 +6,7 @@ const { mainMenu, departmentQuestions, roleQuestions, employeeQuestions, updateR
 const { default: Choices } = require('inquirer/lib/objects/choices.js');
 
 
-let message = '  ______                 _                         __  __                                   \r\n |  ____|               | |                       |  \\\/  |                                  \r\n | |__   _ __ ___  _ __ | | ___  _   _  ___  ___  | \\  \/ | __ _ _ __   __ _  __ _  ___ _ __ \r\n |  __| | \'_ ` _ \\| \'_ \\| |\/ _ \\| | | |\/ _ \\\/ _ \\ | |\\\/| |\/ _` | \'_ \\ \/ _` |\/ _` |\/ _ \\ \'__|\r\n | |____| | | | | | |_) | | (_) | |_| |  __\/  __\/ | |  | | (_| | | | | (_| | (_| |  __\/ |   \r\n |______|_| |_| |_| .__\/|_|\\___\/ \\__, |\\___|\\___| |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|   \r\n                  | |             __\/ |                                      __\/ |          \r\n                  |_|            |___\/                                      |___\/           \r\n'
+let message = '  ______                 _                         __  __                                   \r\n |  ____|               | |                       |  \\\/  |                                  \r\n | |__   _ __ ___  _ __ | | ___  _   _  ___  ___  | \\  \/ | __ _ _ __   __ _  __ _  ___ _ __ \r\n |  __| | \'_ ` _ \\| \'_ \\| |\/ _ \\| | | |\/ _ \\\/ _ \\ | |\\\/| |\/ _` | \'_ \\ \/ _` |\/ _` |\/ _ \\ \'__|\r\n | |____| | | | | | |_) | | (_) | |_| |  __\/  __\/ | |  | | (_| | | | | (_| | (_| |  __\/ |   \r\n |______|_| |_| |_| .__\/|_|\\___\/ \\__, |\\___|\\___| |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|   \r\n                  | |             __\/ |                                      __\/ |          \r\n                  |_|            |___\/                                      |___\/           \r\n';
 
 console.log(message);
 
@@ -31,8 +31,12 @@ inquirer.prompt(mainMenu)
             case 'Add a department':
                 newDepartment();
                 break;
-        }
-    })
+
+            case 'Add a role':
+                newRole();
+                break;
+        };
+    });
 
 function displayDepartments() {
     db.findAllDepartments()
@@ -46,9 +50,9 @@ function displayDepartments() {
 
             //display departments 
         })
-        .then(() => mainMenu)
+        // .then(() => mainMenu)
         .catch(err => console.log(err));
-}
+};
 
 
 function displayRoles() {
@@ -63,9 +67,10 @@ function displayRoles() {
 
             //display roles 
         })
-        .then(() => mainMenu)
+        // .then(() => mainMenu)
         .catch(err => console.log(err));
-}
+};
+
 function displayEmployees() {
     db.findAllEmployees()
 
@@ -78,22 +83,35 @@ function displayEmployees() {
 
             //display employees 
         })
-        .then(() => mainMenu)
+        // .then(() => mainMenu)
         .catch(err => console.log(err));
-}
+};
 
 
 function newDepartment() {
     inquirer.
         prompt(departmentQuestions)
 
-        .then(([answer]) => {
+        .then((answer) => {
             db.addDepartment(answer)
             let addDepartment = answer;
-            // console.log('answer: ', answer);
             console.log('\n');
             console.table(addDepartment);
         })
+        // .then(() => mainMenu)
+        .catch(err => console.log(err));
+};
+
+function newRole() {
+    inquirer.
+        prompt(roleQuestions)
+
+        .then(([answer]) => {
+            db.addRole(answer)
+            let addRole = answer;
+            console.log('\n');
+            console.table(addRole);
+        })
         .then(() => mainMenu)
         .catch(err => console.log(err));
-}
+};

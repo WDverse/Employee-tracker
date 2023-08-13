@@ -60,23 +60,29 @@ class Db {
     addDepartment(answer) {
         return this.connection.promise().query(
             `INSERT INTO department(name)
-            VALUES (answer)`
-        )
+            VALUES ("${answer.department}")`
+        );
 
-    }
+    };
 
-    addRole() {
-
-    }
+    addRole(answer) {
+        return this.connection.promise().query(
+            `INSERT INTO role (title, salary, department_id)
+            VALUES 
+            ("${answer.role},
+            ${answer.salary}, 
+            ${answer.newRoleDepartment} ")`
+        );
+    };
 
     addEmployee() {
 
-    }
+    };
 
     updateEmployeeRole() {
 
-    }
-}
+    };
+};
 
 
 module.exports = new Db(connection);
