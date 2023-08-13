@@ -44,7 +44,7 @@ inquirer.prompt(mainMenu)
                 end();
                 return;
         };
-
+        // inquirer.prompt(mainMenu);
     });
 
 
@@ -60,7 +60,7 @@ function displayDepartments() {
 
             //display departments 
         })
-        // .then(() => mainMenu)
+        .then(() => mainMenu)
         .catch(err => console.log(err));
 };
 
@@ -77,7 +77,7 @@ function displayRoles() {
 
             //display roles 
         })
-        // .then(() => mainMenu)
+        .then(() => mainMenu)
         .catch(err => console.log(err));
 };
 
@@ -93,7 +93,7 @@ function displayEmployees() {
 
             //display employees 
         })
-        // .then(() => mainMenu)
+        .then(() => mainMenu)
         .catch(err => console.log(err));
 };
 
@@ -108,7 +108,7 @@ function newDepartment() {
             console.log('\n');
             console.table(addDepartment);
         })
-        // .then(() => mainMenu)
+        .then(() => mainMenu)
         .catch(err => console.log(err));
 };
 
