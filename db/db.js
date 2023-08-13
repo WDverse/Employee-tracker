@@ -57,10 +57,10 @@ class Db {
         );
     };
 
-    addDepartment(ans) {
+    addDepartment(answer) {
         return this.connection.promise().query(
             `INSERT INTO department(name)
-            VALUES (${ans})`
+            VALUES (answer)`
         )
 
     }

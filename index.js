@@ -85,11 +85,12 @@ function displayEmployees() {
 
 function newDepartment() {
     inquirer.
-        prompt(departmentQuestions);
+        prompt(departmentQuestions)
 
-    db.addDepartment(ans)
-    .then(([answer]) => {
+        .then(([answer]) => {
+            db.addDepartment(answer)
             let addDepartment = answer;
+            // console.log('answer: ', answer);
             console.log('\n');
             console.table(addDepartment);
         })
