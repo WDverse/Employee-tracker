@@ -39,6 +39,10 @@ inquirer.prompt(mainMenu)
             case 'Add an employee':
                 newEmployee();
                 break;
+
+            case 'Update an employee role':
+                updateRole();
+                break;
         };
     });
 
@@ -129,6 +133,21 @@ function newEmployee() {
             let addEmployee = answer;
             console.log('\n');
             console.table(addEmployee);
+        })
+        .then(() => mainMenu)
+        .catch(err => console.log(err));
+};
+
+
+function updateRole() {
+    inquirer.
+        prompt(updateRoleQuestions)
+
+        .then((answer) => {
+            db.updateEmployeeRole(answer)
+            let updateRole = answer;
+            console.log('\n');
+            console.table(updateRole);
         })
         .then(() => mainMenu)
         .catch(err => console.log(err));

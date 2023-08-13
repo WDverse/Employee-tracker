@@ -80,16 +80,21 @@ class Db {
             `INSERT INTO employee (first_name, last_name,role_id, manager_id)
             VALUES 
             ("${answer.firstname}",
-            ${answer.lastname}, 
-            ${answer.employeeRole}),
-            ${answer.manager}`
+            "${answer.lastname}", 
+            ${answer.employeeRole},
+            ${answer.manager})`
         );
     };
 
-    updateEmployeeRole(answer) {
+    updateEmployeeRole(answer) { 
+        return this.connection.promise().query(
+            `UPDATE employee 
+            SET employee.role_id = ${answer.emRoleUpdate}
+            WHERE employee.id = ${answer.emUpdate}
 
+            `
+        );
     };
 };
-
 
 module.exports = new Db(connection);

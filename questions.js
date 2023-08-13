@@ -5,7 +5,7 @@ const mainMenu = [
         type: 'list',
         name: 'task',
         message: 'What would you like to do?',
-        choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role']
+        choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role', 'Quit']
     },
 ];
 
@@ -41,12 +41,12 @@ const roleQuestions = [
                 return{
                     value: item.id, 
                     name: item.name
-                }
+                };
 
-            })
+            });
             console.log(selection);
             return selection;
-        }
+        },
     },
 ];
 
@@ -73,13 +73,12 @@ const employeeQuestions = [
             const selection = result.map(item => {
                 return{
                     value: item.id, 
-                    name: item.name
-                }
-
-            })
+                    name: item.title
+                };
+            });
             console.log(selection);
             return selection;
-        }
+        },
     },
 
     {
@@ -89,32 +88,56 @@ const employeeQuestions = [
         choices: async () => {
             const [result] = await db.findAllEmployees();
             console.log(result);
-            const selection = result.map(item => {
+            const filter = result.filter(item => {
+                return item.manager == null;
+            });
+            const selection = filter.map(item => {
                 return{
                     value: item.id, 
-                    name: item.name
-                }
-
-            })
+                    name: item.first_name + " " + item.last_name
+                };
+            });
             console.log(selection);
             return selection;
-        }
+        },
     },
 ];
 
 const updateRoleQuestions = [
     {
         type: 'list',
-        name: 'update',
+        name: 'emUpdate',
         message: "Which employee's role do you want to update?",
-        choices: ['John Doe', 'Mike Chan', 'Philip Gbeho', 'Sara Poppin', 'Tom Allen', 'Josh Grey', 'Walter Whyte', 'Tom Brown']
+        choices: async () => {
+            const [result] = await db.findAllEmployees();
+            console.log(result);
+            const selection = result.map(item => {
+                return{
+                    value: item.id, 
+                    name: item.first_name + " " + item.last_name
+                };
+            });
+            console.log(selection);
+            return selection;
+        },
     },
 
     {
         type: 'list',
-        name: 'update',
+        name: 'emRoleUpdate',
         message: "Which role do you want to assign the selected employee?",
-        choices: ['Account Manager', 'Lead', 'Sales Lead', 'Lawyer', 'Software Engineer', 'Legal Team Lead', 'Sales Person', 'Accountant',]
+        choices: async () => {
+            const [result] = await db.findAllRoles();
+            console.log(result);
+            const selection = result.map(item => {
+                return{
+                    value: item.id, 
+                    name: item.title
+                };
+            });
+            console.log(selection);
+            return selection;
+        },
     },
 ];
 
