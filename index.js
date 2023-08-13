@@ -8,7 +8,6 @@ const { default: Choices } = require('inquirer/lib/objects/choices.js');
 
 let message = '  ______                 _                         __  __                                   \r\n |  ____|               | |                       |  \\\/  |                                  \r\n | |__   _ __ ___  _ __ | | ___  _   _  ___  ___  | \\  \/ | __ _ _ __   __ _  __ _  ___ _ __ \r\n |  __| | \'_ ` _ \\| \'_ \\| |\/ _ \\| | | |\/ _ \\\/ _ \\ | |\\\/| |\/ _` | \'_ \\ \/ _` |\/ _` |\/ _ \\ \'__|\r\n | |____| | | | | | |_) | | (_) | |_| |  __\/  __\/ | |  | | (_| | | | | (_| | (_| |  __\/ |   \r\n |______|_| |_| |_| .__\/|_|\\___\/ \\__, |\\___|\\___| |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|   \r\n                  | |             __\/ |                                      __\/ |          \r\n                  |_|            |___\/                                      |___\/           \r\n'
 
-
 console.log(message);
 
 inquirer.prompt(mainMenu)
@@ -27,6 +26,10 @@ inquirer.prompt(mainMenu)
 
             case 'View all employees':
                 displayEmployees();
+                break;
+
+            case 'Add a department':
+                newDepartment();
                 break;
         }
     })
@@ -74,6 +77,21 @@ function displayEmployees() {
             console.table(employees);
 
             //display employees 
+        })
+        .then(() => mainMenu)
+        .catch(err => console.log(err));
+}
+
+
+function newDepartment() {
+    inquirer.
+        prompt(departmentQuestions);
+
+    db.addDepartment(ans)
+    .then(([answer]) => {
+            let addDepartment = answer;
+            console.log('\n');
+            console.table(addDepartment);
         })
         .then(() => mainMenu)
         .catch(err => console.log(err));

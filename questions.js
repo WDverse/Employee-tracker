@@ -11,7 +11,7 @@ const departmentQuestions = [
     {
         type: 'input',
         name: 'department',
-        message: 'What is the name of the department?',
+        message: 'What is the name of the department you want to add?'
     },
 ]
 
@@ -19,7 +19,7 @@ const roleQuestions = [
     {
         type: 'input',
         name: 'role',
-        message: 'What is the name of the role?'
+        message: 'What is the name of the role you want to add?'
     },
 
     {
@@ -29,10 +29,10 @@ const roleQuestions = [
     },
 
     {
-        type: 'input',
+        type: 'list',
         name: 'new-role',
         message: 'Which department does the role belong to?',
-        choices: ['Finance', 'Legal', 'Sales', 'Service']
+        choices: ['Finance', 'Legal', 'Sales', 'Engineering']
     },
 ]
 
@@ -50,33 +50,33 @@ const employeeQuestions = [
     },
 
     {
-        type: 'input',
+        type: 'list',
         name: 'employee-role',
         message: "What is the employee's role?",
         choices: ['Account Manager', 'Legal Lead', 'Sales Lead', 'Lawyer', 'Software Engineer', 'Legal Team Lead', 'Sales Person', 'Accountant',]
     },
 
     {
-        type: 'input',
+        type: 'list',
         name: 'manager',
         message: "Who's the employee's manager?",
-        choices: ['Mike Chan', 'Naruto Uzumaki', 'Emmanuel Appiagyei', 'Cristiano Ronaldo', 'John Doe']
+        choices: ['John Doe', 'Philip Gbeho', 'Tom Allen', 'Walter Whyte']
     },
 ]
 
 const updateRoleQuestions = [
     {
-        type: 'input',
+        type: 'list',
         name: 'update',
         message: "Which employee's role do you want to update?",
-        choices: ['Mike Chan', 'Naruto Uzumaki', 'Emmanuel Appiagyei', 'Cristiano Ronaldo', 'John Doe', 'Tom Allen', 'Emma Watson', 'Tom Brown']
+        choices: ['John Doe', 'Mike Chan', 'Philip Gbeho', 'Sara Poppin', 'Tom Allen', 'Josh Grey', 'Walter Whyte', 'Tom Brown']
     },
 
     {
-        type: 'input',
+        type: 'list',
         name: 'update',
         message: "Which role do you want to assign the selected employee?",
-        choices: ['Account Manager', 'Legal Lead', 'Sales Lead', 'Lawyer', 'Software Engineer', 'Legal Team Lead', 'Sales Person', 'Accountant',]
+        choices: ['Account Manager', 'Lead', 'Sales Lead', 'Lawyer', 'Software Engineer', 'Legal Team Lead', 'Sales Person', 'Accountant',]
     },
 ]
 
