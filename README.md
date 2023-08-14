@@ -42,6 +42,7 @@
   ## Credit
 
   AskBCS tutors
+  w3 schools
 
 
   ## Tests
