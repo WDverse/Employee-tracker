@@ -1,160 +1,134 @@
-const inquirer = require('inquirer');
+const { prompt } = require('inquirer');
 const fs = require('fs');
 const db = require('./db/db');
-
 const { mainMenu, departmentQuestions, roleQuestions, employeeQuestions, updateRoleQuestions } = require('./questions.js');
 const { default: Choices } = require('inquirer/lib/objects/choices.js');
-
-
-let message = '  ______                 _                         __  __                                   \r\n |  ____|               | |                       |  \\\/  |                                  \r\n | |__   _ __ ___  _ __ | | ___  _   _  ___  ___  | \\  \/ | __ _ _ __   __ _  __ _  ___ _ __ \r\n |  __| | \'_ ` _ \\| \'_ \\| |\/ _ \\| | | |\/ _ \\\/ _ \\ | |\\\/| |\/ _` | \'_ \\ \/ _` |\/ _` |\/ _ \\ \'__|\r\n | |____| | | | | | |_) | | (_) | |_| |  __\/  __\/ | |  | | (_| | | | | (_| | (_| |  __\/ |   \r\n |______|_| |_| |_| .__\/|_|\\___\/ \\__, |\\___|\\___| |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|   \r\n                  | |             __\/ |                                      __\/ |          \r\n                  |_|            |___\/                                      |___\/           \r\n';
-
-console.log(message);
-
-inquirer.prompt(mainMenu)
-    .then(res => {
-        switch (res.task) {
-            case 'View all departments':
-                displayDepartments();
-                break;
-
-            case 'View all roles':
-                displayRoles();
-                break;
-
-            case 'View all employees':
-                displayEmployees();
-                break;
-
-            case 'Add a department':
-                newDepartment();
-                break;
-
-            case 'Add a role':
-                newRole();
-                break;
-
-            case 'Add an employee':
-                newEmployee();
-                break;
-
-            case 'Update an employee role':
-                updateRole();
-                break;
-            case 'Quit':
-                end();
-                return;
-        };
-        // inquirer.prompt(mainMenu);
-    });
-
-
+init()
+function init() {
+    let message = '  ______                 _                         __  __                                   \r\n |  ____|               | |                       |  \\\/  |                                  \r\n | |__   _ __ ___  _ __ | | ___  _   _  ___  ___  | \\  \/ | __ _ _ __   __ _  __ _  ___ _ __ \r\n |  __| | \'_  _ \\| \'_ \\| |\/ _ \\| | | |\/ _ \\\/ _ \\ | |\\\/| |\/ _ | \'_ \\ \/  |\/ _ |\/ \\ \'__|\r\n | |____| | | | | | |_) | | (_) | |_| |  __\/  __\/ | |  | | (_| | | | | (_| | (_| |  __\/ |   \r\n |______|_| |_| |_| .__\/|_|\\___\/ \\__, |\\___|\\___| |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|   \r\n                  | |             __\/ |                                      __\/ |          \r\n                  |_|            |___\/                                      |___\/           \r\n';
+    console.log(message);
+    loadMenu();
+}
+function loadMenu() {
+    prompt(mainMenu)
+        .then(res => {
+            let task = res.task;
+            switch (task) {
+                case 'View all departments':
+                    displayDepartments();
+                    break;
+                case 'View all roles':
+                    displayRoles();
+                    break;
+                case 'View all employees':
+                    displayEmployees();
+                    break;
+                case 'Add a department':
+                    newDepartment();
+                    break;
+                case 'Add a role':
+                    newRole();
+                    break;
+                case 'Add an employee':
+                    newEmployee();
+                    break;
+                case 'Update an employee role':
+                    updateRole();
+                    break;
+                default:
+                    end();
+            };
+            // inquirer.prompt(mainMenu);
+        });
+}
 function displayDepartments() {
     db.findAllDepartments()
-
         //query all departments out of database
         .then(([answer]) => {
-            //then do something with the answer and resolve the promise 
+            //then do something with the answer and resolve the promise
             let departments = answer;
             console.log('\n');
             console.table(departments);
-
-            //display departments 
+            //display departments
         })
-        .then(() => mainMenu)
+        .then(() => loadMenu())
         .catch(err => console.log(err));
 };
-
-
 function displayRoles() {
     db.findAllRoles()
-
         //query all roles out of database
         .then(([answer]) => {
-            //then do something with the answer and resolve the promise 
+            //then do something with the answer and resolve the promise
             let roles = answer;
             console.log('\n');
             console.table(roles);
-
-            //display roles 
+            //display roles
         })
-        .then(() => mainMenu)
+        .then(() => loadMenu())
         .catch(err => console.log(err));
 };
-
 function displayEmployees() {
     db.findAllEmployees()
-
         //query all employees out of database
         .then(([answer]) => {
-            //then do something with the answer and resolve the promise 
+            //then do something with the answer and resolve the promise
             let employees = answer;
             console.log('\n');
             console.table(employees);
-
-            //display employees 
+            //display employees
         })
-        .then(() => mainMenu)
+        .then(() => loadMenu())
         .catch(err => console.log(err));
 };
-
-
 function newDepartment() {
     inquirer.
         prompt(departmentQuestions)
-
         .then((answer) => {
             db.addDepartment(answer)
             let addDepartment = answer;
             console.log('\n');
             console.table(addDepartment);
         })
-        .then(() => mainMenu)
+        .then(() => loadMenu())
         .catch(err => console.log(err));
 };
-
 function newRole() {
     inquirer.
         prompt(roleQuestions)
-
         .then((answer) => {
             db.addRole(answer)
             let addRole = answer;
             console.log('\n');
             console.table(addRole);
         })
-        .then(() => mainMenu)
+        .then(() => loadMenu())
         .catch(err => console.log(err));
 };
-
 function newEmployee() {
     inquirer.
         prompt(employeeQuestions)
-
         .then((answer) => {
             db.addEmployee(answer)
             let addEmployee = answer;
             console.log('\n');
             console.table(addEmployee);
         })
-        .then(() => mainMenu)
+        .then(() => loadMenu())
         .catch(err => console.log(err));
 };
-
-
 function updateRole() {
     inquirer.
         prompt(updateRoleQuestions)
-
         .then((answer) => {
             db.updateEmployeeRole(answer)
             let updateRole = answer;
             console.log('\n');
             console.table(updateRole);
         })
-        .then(() => mainMenu)
+        .then(() => loadMenu())
         .catch(err => console.log(err));
 };
-
 function end() {
-    end();
+    console.log("Goodbye!");
+    process.exit();
 }
