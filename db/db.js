@@ -1,19 +1,19 @@
-const mysql = require('mysql2');
-const inquirer = require('inquirer');
-const connection = require('./connection');
+const mysql = require('mysql2'); // import mysql
+const inquirer = require('inquirer'); // import inquirer
+const connection = require('./connection'); // import connection.js
 
 class Db {
     constructor(connection) {
         this.connection = connection;
     }
+    // queries to show all departments
     findAllDepartments() {
         return this.connection.promise().query(
             `SELECT 
             * FROM department`,
         );
-
     };
-
+    // queries to show all roles
     findAllRoles() {
         return this.connection.promise().query(
             `SELECT 
@@ -28,9 +28,8 @@ class Db {
             ON role.department_id = department.id`,
         );
     };
-
+    // queries to show all employess
     findAllEmployees() {
-
         return this.connection.promise().query(
             `SELECT 
             employee.id, 
@@ -56,7 +55,7 @@ class Db {
 
         );
     };
-
+    // queries to add new department
     addDepartment(answer) {
         return this.connection.promise().query(
             `INSERT INTO department(name)
@@ -64,7 +63,7 @@ class Db {
         );
 
     };
-
+    // queries to add new role
     addRole(answer) {
         return this.connection.promise().query(
             `INSERT INTO role (title, salary, department_id)
@@ -74,7 +73,7 @@ class Db {
             ${answer.newRoleDepartment})`
         );
     };
-
+    // queries to add new employee
     addEmployee(answer) {
         return this.connection.promise().query(
             `INSERT INTO employee (first_name, last_name,role_id, manager_id)
@@ -85,16 +84,16 @@ class Db {
             ${answer.manager})`
         );
     };
-
-    updateEmployeeRole(answer) { 
+    // queries to update employee role
+    updateEmployeeRole(answer) {
         return this.connection.promise().query(
             `UPDATE employee 
             SET employee.role_id = ${answer.emRoleUpdate}
             WHERE employee.id = ${answer.emUpdate}
-
             `
         );
     };
 };
 
+// export class Db
 module.exports = new Db(connection);

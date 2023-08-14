@@ -1,6 +1,7 @@
-const db = require('./db/db');
-const inquirer = require('inquirer');
+const db = require('./db/db'); //import database
+const inquirer = require('inquirer'); //import inquirer
 
+// main menu
 const mainMenu = [
     {
         type: 'list',
@@ -10,6 +11,7 @@ const mainMenu = [
     },
 ];
 
+// questions to add new department 
 const departmentQuestions = [
     {
         type: 'input',
@@ -18,6 +20,7 @@ const departmentQuestions = [
     },
 ];
 
+// questions to add new role 
 const roleQuestions = [
     {
         type: 'input',
@@ -36,19 +39,20 @@ const roleQuestions = [
         name: 'newRoleDepartment',
         message: 'Which department does the role belong to?',
         choices: async () => {
-            const [result] = await db.findAllDepartments();
+            const [result] = await db.findAllDepartments(); // await function call
+            // create new array for every department
             const selection = result.map(item => {
                 return {
                     value: item.id,
                     name: item.name
                 };
-
             });
             return selection;
         },
     },
 ];
 
+// questions to add new employee 
 const employeeQuestions = [
     {
         type: 'input',
@@ -68,6 +72,7 @@ const employeeQuestions = [
         message: "What is the employee's role?",
         choices: async () => {
             const [result] = await db.findAllRoles();
+            // create new array for every role
             const selection = result.map(item => {
                 return {
                     value: item.id,
@@ -84,9 +89,11 @@ const employeeQuestions = [
         message: "Who's the employee's manager?",
         choices: async () => {
             const [result] = await db.findAllEmployees();
+            // presents only employess who are managers
             const filter = result.filter(item => {
                 return item.manager == null;
             });
+            // create new array for every employee
             const selection = filter.map(item => {
                 return {
                     value: item.id,
@@ -98,6 +105,7 @@ const employeeQuestions = [
     },
 ];
 
+// questions to update role
 const updateRoleQuestions = [
     {
         type: 'list',
@@ -105,6 +113,7 @@ const updateRoleQuestions = [
         message: "Which employee's role do you want to update?",
         choices: async () => {
             const [result] = await db.findAllEmployees();
+            // create new array for every employee
             const selection = result.map(item => {
                 return {
                     value: item.id,
@@ -121,6 +130,7 @@ const updateRoleQuestions = [
         message: "Which role do you want to assign the selected employee?",
         choices: async () => {
             const [result] = await db.findAllRoles();
+            // create new array for every role
             const selection = result.map(item => {
                 return {
                     value: item.id,
@@ -132,4 +142,5 @@ const updateRoleQuestions = [
     },
 ];
 
+// export main menu and questions
 module.exports = { mainMenu, departmentQuestions, roleQuestions, employeeQuestions, updateRoleQuestions };
