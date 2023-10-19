@@ -1,59 +1,67 @@
 # Employee Tracker
 
-  ## Description
+## Description
 
-  This is a command-line application for managing a company's employee database, using Node.js, Inquirer, and MySQL. The application allows the user to view and update their employee database.
+This is a command-line application for managing a company's employee database, using Node.js, Inquirer, and MySQL. The application allows the user to view and update their employee database.
 
+## Table of Contents
 
-  ## Table of Contents
+- [Installation](#installation)
 
-  * [Installation](#installation)
+- [Usage](#usage)
 
-  * [Usage](#usage)
+- [License](#license)
 
-  * [License](#license)
+- [Credit](#credit)
 
-  * [Credit](#credit)
-  
-  * [Tests](#tests)
+- [Deployment](#deployment)
 
-  * [References](#references)
-  
-  
-  ## Installation
-  
-  To install neccessary dependencies, run the following command:
-  
-  ```
-  npm i
-  ```
+- [References](#references)
 
-  ## Usage 
+## Installation
 
-  To use this application, run:
-  ```
-  node index.js 
-   ```
-  Then answer the questions presented in the CLI. Press enter to submit response and move to the next question. A table is disaplyed in the terminal when the user chooses the option to "View...". The user can also select corresponding option to view changes.
-  ## License
+To install neccessary dependencies, run the following command:
 
-  N/A
+```
+npm i
+```
 
-  ## Credit
+## Usage
 
-  AskBCS tutors  
+First, clone the repository. And run:
 
-  W3Schools
+```
+npm i
+```
 
+to install all dependencies.
 
-  ## Tests
+To use this application, run:
 
- The following video shows the application's functionality:
- [Walkthrough Video](https://watch.screencastify.com/v/SVX33pTfwTIHFWan3kpi)
+```
+node index.js
+```
 
- ## References
+Then answer the questions presented in the CLI. Press enter to submit response and move to the next question. A table is disaplyed in the terminal when the user chooses the option to "View...". The user can also select corresponding option to view changes.
+
+## License
+
+N/A
+
+## Credit
+
+AskBCS tutors
+
+W3Schools
+
+## Deployment
+
+The following video shows the application's functionality:  
+
+[Walkthrough Video](https://watch.screencastify.com/v/SVX33pTfwTIHFWan3kpi)
+
+## References
+
 [Ascii Art Generator](https://patorjk.com/software/taag/#p=testall&f=Cyberlarge&t=Employee%20Manager)
 
 [JavaScript Escape/ Unescape tool](https://www.freeformatter.com/javascript-escape.html#before-output)
-
-
