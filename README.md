@@ -34,7 +34,9 @@ First, clone the repository. And run:
 npm i
 ```
 
-to install all dependencies.
+to install all dependencies.  
+
+Then set environment variables.
 
 To use this application, run:
 
